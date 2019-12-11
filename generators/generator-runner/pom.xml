@@ -134,6 +134,12 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.eclipse.vorto</groupId>
+			<artifactId>generator-kura</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

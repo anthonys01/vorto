@@ -16,6 +16,7 @@ import org.eclipse.vorto.codegen.bosch.BoschIoTSuiteGenerator;
 import org.eclipse.vorto.codegen.ditto.EclipseDittoGenerator;
 import org.eclipse.vorto.codegen.hono.EclipseHonoGenerator;
 import org.eclipse.vorto.codegen.jsonschema.JSONSchemaGenerator;
+import org.eclipse.vorto.codegen.kura.KuraGenerator;
 import org.eclipse.vorto.codegen.openapi.OpenAPIGenerator;
 import org.eclipse.vorto.codegen.spi.config.AbstractGeneratorConfiguration;
 import org.eclipse.vorto.codegen.spi.model.Generator;
@@ -30,7 +31,8 @@ public class GeneratorConfiguration extends AbstractGeneratorConfiguration {
 	    addGenerator(Generator.create("/generators/ditto.properties", new CodeGeneratorV1Adapter(new EclipseDittoGenerator())));
 	    addGenerator(Generator.create("/generators/hono.properties", new CodeGeneratorV1Adapter(new EclipseHonoGenerator())));
 	    addGenerator(Generator.create("/generators/openapi.properties",new CodeGeneratorV1Adapter(new OpenAPIGenerator())));
-	    addGenerator(Generator.create("/generators/jsonschema.properties",new CodeGeneratorV1Adapter(new JSONSchemaGenerator()))); 
+	    //addGenerator(Generator.create("/generators/jsonschema.properties",new CodeGeneratorV1Adapter(new JSONSchemaGenerator())));
+		addGenerator(Generator.create("/generators/kura.properties",new CodeGeneratorV1Adapter(new KuraGenerator())));
 	}
 
 }
