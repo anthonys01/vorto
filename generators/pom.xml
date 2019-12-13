@@ -25,6 +25,7 @@
 		<module>generator-kura</module>
 		<module>generator-runner</module>
 		<module>generator-lambda</module>
+		<module>generator-hagerfw</module>
 	</modules>
 
 	<build>
