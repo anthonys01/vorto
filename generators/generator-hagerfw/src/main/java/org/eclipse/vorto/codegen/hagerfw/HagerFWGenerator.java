@@ -53,7 +53,7 @@ public class HagerFWGenerator implements ICodeGenerator {
             }
         }
 
-        return null;
+        return outputter;
     }
 
     private void generateForEntity(InformationModel infomodel, Entity entity,
