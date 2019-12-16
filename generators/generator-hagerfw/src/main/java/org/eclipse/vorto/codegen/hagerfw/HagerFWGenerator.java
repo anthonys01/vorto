@@ -1,6 +1,6 @@
 package org.eclipse.vorto.codegen.hagerfw;
 
-import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaClassGeneratorTask;
+import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaModelClassTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaEnumGeneratorTask;
 import org.eclipse.vorto.codegen.hagerfw.templates.model.InformationModelTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.model.FunctionblockTemplate;
@@ -41,7 +41,8 @@ public class HagerFWGenerator implements ICodeGenerator {
             FunctionBlock fb = fbProperty.getType().getFunctionblock();
 
             for (Entity entity : org.eclipse.vorto.plugin.utils.Utils.getReferencedEntities(fb)) {
-                generateForEntity(model, entity, outputter);
+                new GeneratorTaskFromFileTemplate<>(new JavaModelClassTemplate(model))
+                    .generate(entity, context, outputter);
             }
             for (Enum en : org.eclipse.vorto.plugin.utils.Utils.getReferencedEnums(fb)) {
                 generateForEnum(model, en, outputter);
@@ -49,11 +50,6 @@ public class HagerFWGenerator implements ICodeGenerator {
         }
 
         return outputter;
-    }
-
-    private void generateForEntity(InformationModel infomodel, Entity entity,
-                                   IGeneratedWriter outputter) {
-        new JavaClassGeneratorTask(infomodel).generate(entity, null, outputter);
     }
 
     private void generateForEnum(InformationModel infomodel, Enum en, IGeneratedWriter outputter) {
