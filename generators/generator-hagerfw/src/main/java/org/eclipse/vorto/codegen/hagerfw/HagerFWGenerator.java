@@ -1,15 +1,10 @@
 package org.eclipse.vorto.codegen.hagerfw;
 
-import org.eclipse.vorto.codegen.hono.java.AppTemplate;
-import org.eclipse.vorto.codegen.hono.java.Log4jTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaClassGeneratorTask;
+import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaEnumGeneratorTask;
+import org.eclipse.vorto.codegen.hagerfw.templates.model.InformationModelTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.model.FunctionblockTemplate;
 import org.eclipse.vorto.codegen.hono.java.PomFileTemplate;
-import org.eclipse.vorto.codegen.hono.java.model.FunctionblockTemplate;
-import org.eclipse.vorto.codegen.hono.java.model.InformationModelTemplate;
-import org.eclipse.vorto.codegen.hono.java.model.JavaClassGeneratorTask;
-import org.eclipse.vorto.codegen.hono.java.model.JavaEnumGeneratorTask;
-import org.eclipse.vorto.codegen.hono.java.service.IDataServiceTemplate;
-import org.eclipse.vorto.codegen.hono.java.service.hono.HonoDataService;
-import org.eclipse.vorto.codegen.hono.java.service.hono.HonoMqttClientTemplate;
 import org.eclipse.vorto.core.api.model.datatype.Entity;
 import org.eclipse.vorto.core.api.model.datatype.Enum;
 import org.eclipse.vorto.core.api.model.functionblock.FunctionBlock;
