@@ -36,10 +36,7 @@ class JavaModelClassTemplate implements IFileTemplate<Entity> {
 
     override getContent(Entity entity, InvocationContext context) {
         '''
-		« var pptSet = newHashSet() »
-        «FOR property : entity.getProperties»
-            «pptSet.add(property)»
-        «ENDFOR»
+		« var pptSet = Utils.getPropertySet(entity) »
 		package «Utils.getJavaPackage(informationModelContext)».model.datatypes;
 
 		import java.util.HashMap;
