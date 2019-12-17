@@ -19,7 +19,7 @@ class ModulePomFileTemplate implements IFileTemplate<InformationModel> {
                 <version>0.0.1-SNAPSHOT</version>
             </parent>
 
-			<artifactId>«model.name.toLowerCase»</artifactId>
+			<artifactId>«Utils.getJavaPackage(model)»</artifactId>
             <name>Vorto Generated Model Cloud Connector bundle</name>
             <description>This bundle provides the base code to establish a cloud connection with cloudservice for a given vorto model</description>
 
@@ -39,7 +39,7 @@ class ModulePomFileTemplate implements IFileTemplate<InformationModel> {
     }
 
     override getPath(InformationModel context) {
-        '''«Utils.getJavaPackageBasePath(context)»'''
+        '''«Utils.getJavaOSGiBundleBasePath(context)»'''
     }
 
 }

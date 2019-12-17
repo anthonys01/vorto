@@ -9,8 +9,12 @@ import java.util.Set;
 
 public class Utils {
 
+    public static String getJavaOSGiBundleBasePath(InformationModel context) {
+        return getBasePath(context)+"/src/" + getJavaPackage(context);
+    }
+
     public static String getJavaPackageBasePath(InformationModel context) {
-        return getBasePath(context)+"/src/com/hg/osgi/vorto/" + context.getName().toLowerCase();
+       return getJavaOSGiBundleBasePath(context) + "/src/main/java/com/hg/osgi/vorto/" + context.getName().toLowerCase();
     }
 
     public static String getJavaPackage(InformationModel context) {
