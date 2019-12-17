@@ -10,11 +10,11 @@ import java.util.Set;
 public class Utils {
 
     public static String getJavaPackageBasePath(InformationModel context) {
-        return getBasePath(context)+"/src/com/hg/osgi/fwk/vorto/" + context.getName().toLowerCase();
+        return getBasePath(context)+"/src/com/hg/osgi/vorto/" + context.getName().toLowerCase();
     }
 
     public static String getJavaPackage(InformationModel context) {
-        return "org.eclipse.vorto.hagerfw." + context.getName().toLowerCase();
+        return "com.hg.osgi.vorto." + context.getName().toLowerCase();
     }
 
     public static String getBasePath(InformationModel context) {

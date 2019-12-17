@@ -4,7 +4,9 @@ import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaModelClassTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.model.JavaEnumGeneratorTask;
 import org.eclipse.vorto.codegen.hagerfw.templates.model.InformationModelTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.model.FunctionblockTemplate;
-import org.eclipse.vorto.codegen.hono.java.PomFileTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.pom.RootPomFileTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.pom.SrcPomFileTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.pom.ModulePomFileTemplate;
 import org.eclipse.vorto.core.api.model.datatype.Entity;
 import org.eclipse.vorto.core.api.model.datatype.Enum;
 import org.eclipse.vorto.core.api.model.functionblock.FunctionBlock;
@@ -29,8 +31,10 @@ public class HagerFWGenerator implements ICodeGenerator {
     public IGenerationResult generate(InformationModel model, InvocationContext context) throws GeneratorException {
         GenerationResultZip outputter = new GenerationResultZip(model, KEY);
         ChainedCodeGeneratorTask<InformationModel> generator = new ChainedCodeGeneratorTask<InformationModel>();
-        generator.addTask(new GeneratorTaskFromFileTemplate<InformationModel>(new PomFileTemplate()));
-        generator.addTask(new GeneratorTaskFromFileTemplate<InformationModel>(new InformationModelTemplate()));
+        generator.addTask(new GeneratorTaskFromFileTemplate<>(new RootPomFileTemplate()));
+        generator.addTask(new GeneratorTaskFromFileTemplate<>(new SrcPomFileTemplate()));
+        generator.addTask(new GeneratorTaskFromFileTemplate<>(new ModulePomFileTemplate()));
+        generator.addTask(new GeneratorTaskFromFileTemplate<>(new InformationModelTemplate()));
 
         generator.generate(model, context, outputter);
 
