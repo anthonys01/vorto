@@ -99,7 +99,9 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
 		    	«ENDFOR»
 		    «ENDIF»
 
-
+		    «FOR operation : model.functionblock.operations»
+		    	«methodTemplate.getContent(operation,context)»
+		    «ENDFOR»
 
 		    public Map<String, Object> getStatusProperties() {
 		        Map<String, Object> status = new HashMap<>();
