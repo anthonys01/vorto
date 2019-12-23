@@ -1,4 +1,4 @@
-package org.eclipse.vorto.codegen.hagerfw.templates.model
+package org.eclipse.vorto.codegen.hagerfw.templates.connector
 
 import org.eclipse.vorto.codegen.hagerfw.templates.Utils
 import org.eclipse.vorto.core.api.model.informationmodel.InformationModel
@@ -17,7 +17,7 @@ class InformationModelTemplate implements IFileTemplate<InformationModel> {
 
     override getContent(InformationModel element, InvocationContext context) {
         '''
-        package «Utils.getJavaPackage(element)».model;
+package «Utils.getJavaPackage(element)».model;
 
 public class «element.name» {
 	«FOR fbProperty : element.properties»

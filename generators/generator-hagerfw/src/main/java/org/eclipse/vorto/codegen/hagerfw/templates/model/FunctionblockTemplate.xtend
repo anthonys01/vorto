@@ -9,6 +9,8 @@ import org.eclipse.vorto.plugin.generator.utils.IFileTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassFieldGetterTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassFieldSetterTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassFieldTemplate
+import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassMethodParameterTemplate
+import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassMethodTemplate
 
 class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
     InformationModel informationModelContext;
@@ -16,6 +18,8 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
     JavaClassFieldTemplate propertyTemplate;
     JavaClassFieldSetterTemplate propertySetterTemplate;
     JavaClassFieldGetterTemplate propertyGetterTemplate;
+    JavaClassMethodParameterTemplate methodParameterTemplate;
+    JavaClassMethodTemplate methodTemplate;
 
     new(InformationModel context) {
         this.informationModelContext = context;
@@ -41,6 +45,10 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
                 '''«Utils.getJavaPackage(informationModelContext)».model.datatypes.'''
             }
         };
+
+        this.methodParameterTemplate = new JavaClassMethodParameterTemplate();
+
+        this.methodTemplate = new JavaClassMethodTemplate(this.methodParameterTemplate);
     }
 
     override getFileName(FunctionblockModel model) {
@@ -54,7 +62,7 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
 
     override getContent(FunctionblockModel model,InvocationContext context) {
         '''
-        package «Utils.getJavaPackage(informationModelContext)».model;
+		package «Utils.getJavaPackage(informationModelContext)».model;
 
 		import java.util.HashMap;
 		import java.util.Map;
@@ -91,8 +99,10 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
 		    	«ENDFOR»
 		    «ENDIF»
 
-		    public Map getStatusProperties() {
-		        Map<String, Object> status = new HashMap<String, Object>();
+
+
+		    public Map<String, Object> getStatusProperties() {
+		        Map<String, Object> status = new HashMap<>();
 		        «IF fb.status !== null»
 		        	«FOR property : model.functionblock.status.properties»
 		        		status.put("«property.name»", this.«property.name»);
@@ -100,8 +110,8 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
 		        «ENDIF»
 		    	return status;
 		    }
-		    public Map getConfigurationProperties() {
-		        Map<String, Object> configuration = new HashMap<String, Object>();
+		    public Map<String, Object> getConfigurationProperties() {
+		        Map<String, Object> configuration = new HashMap<>();
 		        «IF fb.configuration !== null»
 		        	«FOR property : model.functionblock.configuration.properties»
 		        		configuration.put("«property.name»", this.«property.name»);
