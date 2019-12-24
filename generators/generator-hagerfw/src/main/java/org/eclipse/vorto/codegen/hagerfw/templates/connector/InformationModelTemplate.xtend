@@ -78,7 +78,7 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
         // function blocks operations
         «FOR fbProperty : element.properties»
             «FOR operation : fbProperty.type.functionblock.operations»
-        callbackMap.put("«operation.name»", this);
+            callbackMap.put("«operation.name»", this);
             «ENDFOR»
         «ENDFOR»
 
@@ -132,13 +132,13 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
         Gson gson = new Gson();
         Object resultPayload = null;
         switch (operationName) {
-        «FOR fbProperty : element.properties»
-            «FOR operation : fbProperty.type.functionblock.operations»
-            case «operation.name»:
-                // call your method here
-                break;
+            «FOR fbProperty : element.properties»
+                «FOR operation : fbProperty.type.functionblock.operations»
+                case «operation.name»:
+                    // call your method here
+                    break;
+                «ENDFOR»
             «ENDFOR»
-        «ENDFOR»
             default:
                 return new OperationStatusMessage(operationName, CloudOperationStatusConstants.METHOD_NOT_DEFINED, null);
         }
@@ -157,9 +157,9 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
         switch (propertyName) {
             «FOR fbProperty : element.properties»
                 «FOR property : fbProperty.type.functionblock.configuration.properties»
-            case «property.name»:
-                «fbProperty.name».set«property.name.toFirstUpper»(gson.fromJson(propertyValue.toString(), «Utils.getPropertyTypeName(property,dtNamespace)».class));
-                break;
+                case «property.name»:
+                    «fbProperty.name».set«property.name.toFirstUpper»(gson.fromJson(propertyValue.toString(), «Utils.getPropertyTypeName(property,dtNamespace)».class));
+                    break;
                 «ENDFOR»
             «ENDFOR»
             default:
@@ -169,22 +169,22 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
 
     «FOR fbProperty : element.properties»
         «FOR event : fbProperty.type.functionblock.events»
-    public void «event.name»Event() {
-        Gson gson = new Gson();
+        public void «event.name»Event() {
+            Gson gson = new Gson();
 
             «FOR property : event.properties»
-        «Utils.getPropertyTypeName(property,dtNamespace)» «property.name» = null;
+            «Utils.getPropertyTypeName(property,dtNamespace)» «property.name» = null;
             «ENDFOR»
 
-        // your code here
+            // your code here
 
-        Map<String, Object> event = new HashMap<>();
+            Map<String, Object> event = new HashMap<>();
             «FOR property : event.properties»
-        event.put("«Utils.getPropertyTypeName(property,dtNamespace)»", «Utils.getPropertyTypeName(property,dtNamespace)»);
+            event.put("«property.name»", «property.name»);
             «ENDFOR»
 
-        cloudHelper.sendMessage(gson.toJson(event), null);
-    }
+            cloudHelper.sendMessage(gson.toJson(event), null);
+        }
         «ENDFOR»
     «ENDFOR»
 }
