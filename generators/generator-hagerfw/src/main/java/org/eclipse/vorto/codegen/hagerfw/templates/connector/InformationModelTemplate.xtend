@@ -134,7 +134,7 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
         switch (operationName) {
             «FOR fbProperty : element.properties»
                 «FOR operation : fbProperty.type.functionblock.operations»
-                case «operation.name»:
+                case "«operation.name»":
                     // call your method here
                     break;
                 «ENDFOR»
@@ -157,7 +157,7 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
         switch (propertyName) {
             «FOR fbProperty : element.properties»
                 «FOR property : fbProperty.type.functionblock.configuration.properties»
-                case «property.name»:
+                case "«property.name»":
                     «fbProperty.name».set«property.name.toFirstUpper»(gson.fromJson(propertyValue.toString(), «Utils.getPropertyTypeName(property,dtNamespace)».class));
                     break;
                 «ENDFOR»
