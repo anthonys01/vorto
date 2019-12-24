@@ -9,7 +9,7 @@ import org.eclipse.vorto.plugin.generator.utils.javatemplates.ValueMapper
 class InformationModelTemplate implements IFileTemplate<InformationModel> {
 
     override getFileName(InformationModel context) {
-        '''«context.name».java'''
+        '''«context.name»App.java'''
     }
 
     override getPath(InformationModel context) {
