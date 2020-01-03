@@ -43,7 +43,7 @@ import java.util.*;
 «var dtNamespace = Utils.getJavaPackage(element) + ".model.datatypes."»
 
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
-@Designate(ocd = CloudConnectionConfig.class)
+@Designate(ocd = «element.name»AppConfig.class)
 public class «element.name»App implements EventHandler, CloudOperationCallback {
 
     private final UUID uuid = UUID.randomUUID();
