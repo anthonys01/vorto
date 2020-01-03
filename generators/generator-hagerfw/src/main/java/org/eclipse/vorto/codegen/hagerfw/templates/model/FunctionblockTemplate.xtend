@@ -64,6 +64,7 @@ class FunctionblockTemplate implements IFileTemplate<FunctionblockModel> {
         '''
 		package «Utils.getJavaPackage(informationModelContext)».model;
 
+		import «Utils.getJavaPackage(informationModelContext)».model.datatypes.*;
 		import java.util.HashMap;
 		import java.util.Map;
 
