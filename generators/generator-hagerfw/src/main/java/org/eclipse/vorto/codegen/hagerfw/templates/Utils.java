@@ -1,7 +1,6 @@
 package org.eclipse.vorto.codegen.hagerfw.templates;
 
 import org.eclipse.vorto.core.api.model.datatype.*;
-import org.eclipse.vorto.core.api.model.datatype.Enum;
 import org.eclipse.vorto.core.api.model.informationmodel.InformationModel;
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.ValueMapper;
 
@@ -63,5 +62,26 @@ public class Utils {
             return dataTypeNamespace + object.getType().getName();
         }
         return null;
+    }
+
+    public static String toUpperCaseWithUnderscore(String input) {
+        if(input == null) {
+            throw new IllegalArgumentException();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if(Character.isUpperCase(c)) {
+                if(i > 0) {
+                    sb.append('_');
+                }
+                sb.append(c);
+            } else {
+                sb.append(Character.toUpperCase(c));
+            }
+        }
+
+        return sb.toString();
     }
 }

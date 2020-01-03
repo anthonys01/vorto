@@ -33,7 +33,8 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
-import org.osgi.service.event.EventHandler;
+import org.osgi.service.event.EventHandler
+import org.osgi.service.metatype.annotations.Designate;;
 «FOR fbProperty : element.properties»
 import «Utils.getJavaPackage(element)».model.«fbProperty.type.name»;
 «ENDFOR»
@@ -41,7 +42,8 @@ import «Utils.getJavaPackage(element)».model.«fbProperty.type.name»;
 import java.util.*;
 «var dtNamespace = Utils.getJavaPackage(element) + ".model.datatypes."»
 
-@Component(immediate = true)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Designate(ocd = CloudConnectionConfig.class)
 public class «element.name»App implements EventHandler, CloudOperationCallback {
 
     private final UUID uuid = UUID.randomUUID();
@@ -61,7 +63,7 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
     }
 
     @Activate
-    public void activate(BundleContext context, ThermostatIMAppConfig config) throws CloudConnectionException {
+    public void activate(BundleContext context, «element.name»AppConfig config) throws CloudConnectionException {
         if (config == null) {
             return;
         }
@@ -92,7 +94,7 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
     }
 
     @Modified
-    public void update(BundleContext context, ThermostatIMAppConfig config) throws CloudConnectionException {
+    public void update(BundleContext context, «element.name»AppConfig config) throws CloudConnectionException {
         if (config == null) {
             return;
         }
