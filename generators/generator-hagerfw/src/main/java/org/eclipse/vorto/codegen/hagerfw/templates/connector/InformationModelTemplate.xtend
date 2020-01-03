@@ -33,8 +33,8 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
-import org.osgi.service.event.EventHandler
-import org.osgi.service.metatype.annotations.Designate;;
+import org.osgi.service.event.EventHandler;
+import org.osgi.service.metatype.annotations.Designate;
 «FOR fbProperty : element.properties»
 import «Utils.getJavaPackage(element)».model.«fbProperty.type.name»;
 «ENDFOR»
