@@ -61,6 +61,8 @@ class FIModelImplTemplate implements IFileTemplate<FunctionblockModel> {
 
 		import com.prosyst.mbs.services.fim.spi.AbstractFunctionalItem;
 		import com.prosyst.mbs.services.fim.spi.FunctionalItemAdminSpi;
+		import org.osgi.framework.BundleContext;
+		import org.osgi.service.component.annotations.*;
 		import «Utils.getJavaPackage(informationModelContext)».model.datatypes.*;
 		import java.util.HashMap;
 		import java.util.Map;
