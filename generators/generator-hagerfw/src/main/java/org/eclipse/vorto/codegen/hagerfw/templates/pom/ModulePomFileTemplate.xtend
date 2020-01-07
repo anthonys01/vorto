@@ -23,6 +23,12 @@ class ModulePomFileTemplate implements IFileTemplate<InformationModel> {
     <name>Vorto Generated Model Cloud Connector bundle</name>
     <description>This bundle provides the base code to establish a cloud connection with cloudservice for a given vorto model</description>
 
+    <properties>
+        <bundle.exportPackage>
+            «Utils.getJavaPackage(model)»
+        </bundle.exportPackage>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.hg.osgi.fwk</groupId>

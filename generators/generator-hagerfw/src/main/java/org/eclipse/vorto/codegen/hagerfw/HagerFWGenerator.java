@@ -9,6 +9,8 @@ import org.eclipse.vorto.codegen.hagerfw.templates.connector.InformationModelCon
 import org.eclipse.vorto.codegen.hagerfw.templates.pom.RootPomFileTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.pom.SrcPomFileTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.pom.ModulePomFileTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.fi.FIModelImplTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.fi.FIModelInterfaceTemplate;
 import org.eclipse.vorto.core.api.model.datatype.Entity;
 import org.eclipse.vorto.core.api.model.datatype.Enum;
 import org.eclipse.vorto.core.api.model.functionblock.FunctionBlock;
@@ -44,6 +46,10 @@ public class HagerFWGenerator implements ICodeGenerator {
 
         for (FunctionblockProperty fbProperty : model.getProperties()) {
             new GeneratorTaskFromFileTemplate<>(new FunctionblockTemplate(model))
+                    .generate(fbProperty.getType(), context, outputter);
+            new GeneratorTaskFromFileTemplate<>(new FIModelInterfaceTemplate(model))
+                    .generate(fbProperty.getType(), context, outputter);
+            new GeneratorTaskFromFileTemplate<>(new FIModelImplTemplate(model))
                     .generate(fbProperty.getType(), context, outputter);
 
             FunctionBlock fb = fbProperty.getType().getFunctionblock();
