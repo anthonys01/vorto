@@ -114,23 +114,18 @@ class FIModelImplTemplate implements IFileTemplate<FunctionblockModel> {
 
 		    «IF fb.status !== null»
 		    	«FOR property : model.functionblock.status.properties»
-		    	    @Override
 		    		«propertySetterTemplate.getContent(property,context)»
-		    	    @Override
 		    		«propertyGetterTemplate.getContent(property,context)»
 		    	«ENDFOR»
 		    «ENDIF»
 		    «IF fb.configuration !== null»
 		    	«FOR property : model.functionblock.configuration.properties»
-		    	    @Override
 		    		«propertySetterTemplate.getContent(property,context)»
-		    	    @Override
 		    		«propertyGetterTemplate.getContent(property,context)»
 		    	«ENDFOR»
 		    «ENDIF»
 
 		    «FOR operation : model.functionblock.operations»
-		    	@Override
 		    	«methodTemplate.getContent(operation,context)»
 		    «ENDFOR»
 
