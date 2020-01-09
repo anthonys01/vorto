@@ -36,7 +36,7 @@ import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
 import org.osgi.service.metatype.annotations.Designate;
 «FOR fbProperty : element.properties»
-import «Utils.getJavaPackage(element)».model.«fbProperty.type.name»;
+import «Utils.getJavaPackage(element)».model.I«fbProperty.type.name»FI;
 «ENDFOR»
 
 import java.util.*;
@@ -52,9 +52,14 @@ public class «element.name»App implements EventHandler, CloudOperationCallback
     private CloudConnectionHelper cloudHelper;
 
     private ServiceRegistration registration;
-
 	«FOR fbProperty : element.properties»
-	private «fbProperty.type.name» «fbProperty.name» = new «fbProperty.type.name»();
+
+	private I«fbProperty.type.name»FI «fbProperty.name»;
+
+	@Reference
+	public void set«fbProperty.name.toFirstUpper»(I«fbProperty.type.name»FI «fbProperty.name») {
+	    this.«fbProperty.name» = «fbProperty.name»;
+	}
 	«ENDFOR»
 
     @Reference

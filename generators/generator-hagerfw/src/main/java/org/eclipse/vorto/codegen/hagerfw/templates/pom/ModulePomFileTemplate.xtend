@@ -25,7 +25,7 @@ class ModulePomFileTemplate implements IFileTemplate<InformationModel> {
 
     <properties>
         <bundle.exportPackage>
-            «Utils.getJavaPackage(model)»
+            «Utils.getJavaPackage(model)».model
         </bundle.exportPackage>
     </properties>
 

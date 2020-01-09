@@ -7,7 +7,6 @@ import org.eclipse.vorto.core.api.model.informationmodel.InformationModel
 import org.eclipse.vorto.plugin.generator.InvocationContext
 import org.eclipse.vorto.plugin.generator.utils.IFileTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassFieldGetterTemplate
-import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassFieldSetterTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassFieldTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassMethodParameterTemplate
 import org.eclipse.vorto.plugin.generator.utils.javatemplates.JavaClassMethodTemplate
@@ -17,7 +16,7 @@ class FIModelImplTemplate implements IFileTemplate<FunctionblockModel> {
     InformationModel informationModelContext;
 
     JavaClassFieldTemplate propertyTemplate;
-    JavaClassFieldSetterTemplate propertySetterTemplate;
+    FIPropertySetterImplTemplate propertySetterTemplate;
     JavaClassFieldGetterTemplate propertyGetterTemplate;
     JavaClassMethodParameterTemplate methodParameterTemplate;
     JavaClassMethodTemplate methodTemplate;
@@ -30,7 +29,7 @@ class FIModelImplTemplate implements IFileTemplate<FunctionblockModel> {
                 '''«Utils.getJavaPackage(informationModelContext)».model.datatypes.'''
             }
         };
-        this.propertySetterTemplate = new JavaClassFieldSetterTemplate("set") {
+        this.propertySetterTemplate = new FIPropertySetterImplTemplate() {
             protected override getNamespaceOfDatatype() {
                 '''«Utils.getJavaPackage(informationModelContext)».model.datatypes.'''
             }
