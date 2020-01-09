@@ -16,19 +16,19 @@ class FIPropertySetterImplTemplate implements ITemplate<Property> {
     override getContent(Property property, InvocationContext invocationContext) {
         '''
 «IF property.type instanceof PrimitivePropertyType»
-    void set«ValueMapper.normalize(property.name.toFirstUpper)»(«ValueMapper.mapSimpleDatatype((property.type as PrimitivePropertyType).type as PrimitiveType)» «ValueMapper.normalize(property.name)») {
+    public void set«ValueMapper.normalize(property.name.toFirstUpper)»(«ValueMapper.mapSimpleDatatype((property.type as PrimitivePropertyType).type as PrimitiveType)» «ValueMapper.normalize(property.name)») {
         propertyChanged(« Utils.toUpperCaseWithUnderscore(property.name) », «ValueMapper.normalize(property.name)», this.«ValueMapper.normalize(property.name)», true);
         this.«ValueMapper.normalize(property.name)» = «ValueMapper.normalize(property.name)»;
     }
 «ELSEIF property.type instanceof ObjectPropertyType»
     «var ObjectPropertyType object = property.type as ObjectPropertyType»
     «IF object.type instanceof Entity»
-        void set«ValueMapper.normalize(property.name.toFirstUpper)»(«namespaceOfDatatype»«(object.type as Entity).name.toFirstUpper» «ValueMapper.normalize(property.name)») {
+        public void set«ValueMapper.normalize(property.name.toFirstUpper)»(«namespaceOfDatatype»«(object.type as Entity).name.toFirstUpper» «ValueMapper.normalize(property.name)») {
             propertyChanged(« Utils.toUpperCaseWithUnderscore(property.name) », «ValueMapper.normalize(property.name)», this.«ValueMapper.normalize(property.name)», true);
             this.«ValueMapper.normalize(property.name)» = «ValueMapper.normalize(property.name)»;
         }
     «ELSEIF object.type instanceof Enum»
-        void set«ValueMapper.normalize(property.name.toFirstUpper)»(«namespaceOfDatatype»«(object.type as Enum).name.toFirstUpper» «ValueMapper.normalize(property.name)») {
+        public void set«ValueMapper.normalize(property.name.toFirstUpper)»(«namespaceOfDatatype»«(object.type as Enum).name.toFirstUpper» «ValueMapper.normalize(property.name)») {
             propertyChanged(« Utils.toUpperCaseWithUnderscore(property.name) », «ValueMapper.normalize(property.name)», this.«ValueMapper.normalize(property.name)», true);
             this.«ValueMapper.normalize(property.name)» = «ValueMapper.normalize(property.name)»;
         }
