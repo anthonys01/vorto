@@ -11,6 +11,7 @@ import org.eclipse.vorto.codegen.hagerfw.templates.pom.SrcPomFileTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.pom.ModulePomFileTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.fi.FIModelImplTemplate;
 import org.eclipse.vorto.codegen.hagerfw.templates.fi.FIModelInterfaceTemplate;
+import org.eclipse.vorto.codegen.hagerfw.templates.basicclient.BasicClientTemplate;
 import org.eclipse.vorto.core.api.model.datatype.Entity;
 import org.eclipse.vorto.core.api.model.datatype.Enum;
 import org.eclipse.vorto.core.api.model.functionblock.FunctionBlock;
@@ -41,6 +42,8 @@ public class HagerFWGenerator implements ICodeGenerator {
         generator.addTask(new GeneratorTaskFromFileTemplate<>(new InformationModelTemplate()));
         generator.addTask(new GeneratorTaskFromFileTemplate<>(new InformationModelConfigTemplate()));
         generator.addTask(new GeneratorTaskFromFileTemplate<>(new CloudConnectionHelperTemplate()));
+
+        generator.addTask(new GeneratorTaskFromFileTemplate<>(new BasicClientTemplate()));
 
         generator.generate(model, context, outputter);
 
