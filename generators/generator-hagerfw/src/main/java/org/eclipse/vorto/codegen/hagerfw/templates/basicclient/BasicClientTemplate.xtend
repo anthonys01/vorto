@@ -9,7 +9,7 @@ import org.eclipse.vorto.plugin.generator.utils.javatemplates.ValueMapper
 class BasicClientTemplate implements IFileTemplate<InformationModel> {
 
     override getFileName(InformationModel context) {
-        '''«context.name»App.java'''
+        '''BasicClient.java'''
     }
 
     override getPath(InformationModel context) {
@@ -56,6 +56,11 @@ class BasicClientTemplate implements IFileTemplate<InformationModel> {
 		        «FOR fbProperty : element.properties»
 		        if ("«fbProperty.type.name»FI".equals(fiEvent.getUID())) {
 		            switch (fiEvent.getPropertyChangedName()) {
+		            «FOR property : fbProperty.type.functionblock.status.properties»
+		                case "«property.name»":
+		                    // your code here
+		                    break;
+		            «ENDFOR»
 		            «FOR property : fbProperty.type.functionblock.configuration.properties»
 		                case "«property.name»":
 		                    // your code here
